@@ -1,0 +1,12 @@
+{
+  "name": "focusguard-landing-page",
+  "version": "1.0.0",
+  "description": "FocusGuard Android App Download & Features Landing Page",
+  "scripts": {
+    "start": "npx serve public -p 3000",
+    "build": "echo 'Static build ready for Vercel deployment'"
+  },
+  "keywords": ["focusguard", "android", "digital-wellbeing", "apk-download"],
+  "author": "FocusGuard Team",
+  "license": "MIT"
+}
