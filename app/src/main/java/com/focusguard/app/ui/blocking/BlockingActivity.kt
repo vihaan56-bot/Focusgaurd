@@ -22,7 +22,7 @@ import com.focusguard.app.ui.theme.FocusGuardTheme
 class BlockingActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate()
+        super.onCreate(savedInstanceState)
 
         val appName = intent.getStringExtra("EXTRA_APP_NAME") ?: "App"
         val blockReason = intent.getStringExtra("EXTRA_BLOCK_REASON") ?: "Daily limit reached"
