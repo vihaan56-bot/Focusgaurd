@@ -15,4 +15,8 @@
     <string name="blocked_attempts_today">Blocked Attempts Today</string>
     <string name="remaining_allowance">Remaining Daily Allowance</string>
     <string name="most_used_apps">Most Used Distracting Apps</string>
+
+    <!-- Accessibility Service Strings for Android Settings & Samsung One UI -->
+    <string name="accessibility_service_label">FocusGuard Distraction Detection</string>
+    <string name="accessibility_service_description">Detects navigation into WhatsApp Status/Updates, Instagram Reels, and YouTube Shorts to help you enforce daily distraction limits locally on your device.</string>
 </resources>
