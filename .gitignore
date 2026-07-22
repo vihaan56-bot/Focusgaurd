@@ -14,5 +14,15 @@ local.properties
 Thumbs.db
 .DS_Store
 
-# Keep website build output
+# Keystore file
+focusguard.jks
+
+# Android SDK and wrapper binaries downloads
+android-sdk/
+cmdline-tools.zip
+gradle-8.2-bin.zip
+gradle-8.2/
+
+# Keep website build outputs
 !website/public/FocusGuard-debug.apk
+!website/public/FocusGuard-release.apk
