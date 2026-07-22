@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "headers": [
     {
-      "source": "/FocusGuard-debug.apk",
+      "source": "/DistractOff-debug.apk",
       "headers": [
         {
           "key": "Content-Type",
@@ -11,12 +11,12 @@
         },
         {
           "key": "Content-Disposition",
-          "value": "attachment; filename=\"FocusGuard-debug.apk\""
+          "value": "attachment; filename=\"DistractOff-debug.apk\""
         }
       ]
     },
     {
-      "source": "/FocusGuard-release.apk",
+      "source": "/DistractOff-release.apk",
       "headers": [
         {
           "key": "Content-Type",
@@ -24,7 +24,7 @@
         },
         {
           "key": "Content-Disposition",
-          "value": "attachment; filename=\"FocusGuard-release.apk\""
+          "value": "attachment; filename=\"DistractOff-release.apk\""
         }
       ]
     }

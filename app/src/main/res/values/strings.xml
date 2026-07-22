@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">FocusGuard</string>
-    <string name="dashboard_title">FocusGuard Dashboard</string>
+    <string name="app_name">DistractOff</string>
+    <string name="dashboard_title">DistractOff Dashboard</string>
     <string name="usage_access_required">Usage Access Required</string>
-    <string name="usage_access_description">FocusGuard needs Usage Access permission to track app screen time and calculate daily allowance.</string>
+    <string name="usage_access_description">DistractOff needs Usage Access permission to track app screen time and calculate daily allowance.</string>
     <string name="grant_permission">Enable Usage Access</string>
     <string name="accessibility_required">Accessibility Service Required</string>
-    <string name="accessibility_description">Accessibility Service allows FocusGuard to detect distracting sections (Status/Reels/Shorts) inside apps locally on your device.</string>
+    <string name="accessibility_description">Accessibility Service allows DistractOff to detect distracting sections (Status/Reels/Shorts) inside apps locally on your device.</string>
     <string name="grant_accessibility">Enable Accessibility</string>
     <string name="start_focus_mode">Start Focus Mode</string>
     <string name="stop_focus_mode">Stop Focus Mode</string>
@@ -17,6 +17,6 @@
     <string name="most_used_apps">Most Used Distracting Apps</string>
 
     <!-- Accessibility Service Strings for Android Settings & Samsung One UI -->
-    <string name="accessibility_service_label">FocusGuard Distraction Detection</string>
+    <string name="accessibility_service_label">DistractOff Distraction Detection</string>
     <string name="accessibility_service_description">Detects navigation into WhatsApp Status/Updates, Instagram Reels, and YouTube Shorts to help you enforce daily distraction limits locally on your device.</string>
 </resources>

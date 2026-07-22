@@ -67,7 +67,7 @@ fun PermissionOnboardingScreen(onPermissionsCompleted: () -> Unit) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Welcome to FocusGuard",
+            text = "Welcome to DistractOff",
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary
@@ -76,7 +76,7 @@ fun PermissionOnboardingScreen(onPermissionsCompleted: () -> Unit) {
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            text = "To help you reduce excessive screen time and block distracting sections, FocusGuard requires standard Android system permissions.",
+            text = "To help you reduce excessive screen time and block distracting sections, DistractOff requires standard Android system permissions.",
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )
@@ -101,7 +101,7 @@ fun PermissionOnboardingScreen(onPermissionsCompleted: () -> Unit) {
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Allows FocusGuard to read daily application screen time so you can track total usage and set app limits.",
+                    text = "Allows DistractOff to read daily application screen time so you can track total usage and set app limits.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

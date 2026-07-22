@@ -47,7 +47,7 @@ fun DashboardScreen(
             .padding(16.dp)
     ) {
         Text(
-            text = "FocusGuard",
+            text = "DistractOff",
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.padding(bottom = 16.dp)
@@ -80,7 +80,7 @@ fun DashboardScreen(
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "FocusGuard needs Usage Access to calculate screen time and enforce app limits.",
+                        text = "DistractOff needs Usage Access to calculate screen time and enforce app limits.",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onErrorContainer
                     )
