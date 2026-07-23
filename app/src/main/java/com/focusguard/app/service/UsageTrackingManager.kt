@@ -67,4 +67,30 @@ class UsageTrackingManager(private val context: Context) {
 
         return result.sortedByDescending { it.totalTimeInForegroundMs }
     }
+
+    /**
+     * Fast, low-overhead lookup of a single application's daily screen time in milliseconds.
+     */
+    fun getTodayUsageForPackage(packageName: String): Long {
+        if (!PermissionUtils.hasUsageAccessPermission(context) || usageStatsManager == null) {
+            return 0L
+        }
+
+        val startTime = TimeUtils.getStartOfTodayMs()
+        val endTime = System.currentTimeMillis()
+
+        val statsList = usageStatsManager.queryUsageStats(
+            UsageStatsManager.INTERVAL_DAILY,
+            startTime,
+            endTime
+        ) ?: return 0L
+
+        var maxTime = 0L
+        for (stats in statsList) {
+            if (stats.packageName == packageName) {
+                maxTime = maxOf(maxTime, stats.totalTimeInForeground)
+            }
+        }
+        return maxTime
+    }
 }

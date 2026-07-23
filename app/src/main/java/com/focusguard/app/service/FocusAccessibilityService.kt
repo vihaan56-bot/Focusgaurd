@@ -35,28 +35,52 @@ class FocusAccessibilityService : AccessibilityService() {
         // Strict fail-safe: Never inspect protected applications
         if (ProtectedApps.isProtectedPackage(packageName)) return
 
-        val rootNode = rootInActiveWindow ?: return
+        val rootNode = rootInActiveWindow
 
         serviceScope.launch {
-            val settingsRepo = FocusGuardApplication.instance.settingsRepository
+            val app = FocusGuardApplication.instance
+            val settingsRepo = app.settingsRepository
+            val isFocusModeActive = settingsRepo.isFocusModeActive.first()
 
-            when (packageName) {
-                whatsAppDetector.targetPackageName -> {
-                    val isEnabled = settingsRepo.isWhatsAppStatusBlocking.first()
-                    if (isEnabled && whatsAppDetector.isDistractionDetected(event, rootNode)) {
-                        launchBlockingActivity("WhatsApp", "WhatsApp Status / Updates Blocked")
-                    }
+            val appRule = app.appRuleRepository.getRuleForPackage(packageName)
+
+            // 1. Focus Mode Block
+            val isDistracting = appRule?.isDistractingApp ?: true
+            if (isFocusModeActive && isDistracting) {
+                launchBlockingActivity(appRule?.appName ?: packageName, "Focus Mode is Active")
+                return@launch
+            }
+
+            // 2. Daily app limit block
+            if (appRule != null && appRule.dailyLimitMinutes > 0) {
+                val todayTimeForeground = app.usageTrackingManager.getTodayUsageForPackage(packageName)
+                val limitMs = appRule.dailyLimitMinutes * 60 * 1000L
+                if (todayTimeForeground >= limitMs) {
+                    launchBlockingActivity(appRule.appName, "Daily screen time limit reached")
+                    return@launch
                 }
-                instagramDetector.targetPackageName -> {
-                    val isEnabled = settingsRepo.isInstagramReelsBlocking.first()
-                    if (isEnabled && instagramDetector.isDistractionDetected(event, rootNode)) {
-                        launchBlockingActivity("Instagram", "Instagram Reels Blocked")
+            }
+
+            // 3. Tab-level sub-section blocks
+            if (rootNode != null) {
+                when (packageName) {
+                    whatsAppDetector.targetPackageName -> {
+                        val isEnabled = settingsRepo.isWhatsAppStatusBlocking.first()
+                        if (isEnabled && whatsAppDetector.isDistractionDetected(event, rootNode)) {
+                            launchBlockingActivity("WhatsApp", "WhatsApp Status / Updates Blocked")
+                        }
                     }
-                }
-                youTubeDetector.targetPackageName -> {
-                    val isEnabled = settingsRepo.isYouTubeShortsBlocking.first()
-                    if (isEnabled && youTubeDetector.isDistractionDetected(event, rootNode)) {
-                        launchBlockingActivity("YouTube", "YouTube Shorts Blocked")
+                    instagramDetector.targetPackageName -> {
+                        val isEnabled = settingsRepo.isInstagramReelsBlocking.first()
+                        if (isEnabled && instagramDetector.isDistractionDetected(event, rootNode)) {
+                            launchBlockingActivity("Instagram", "Instagram Reels Blocked")
+                        }
+                    }
+                    youTubeDetector.targetPackageName -> {
+                        val isEnabled = settingsRepo.isYouTubeShortsBlocking.first()
+                        if (isEnabled && youTubeDetector.isDistractionDetected(event, rootNode)) {
+                            launchBlockingActivity("YouTube", "YouTube Shorts Blocked")
+                        }
                     }
                 }
             }

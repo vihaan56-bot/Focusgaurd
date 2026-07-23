@@ -68,11 +68,12 @@ class AppsViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
-    fun saveAppRule(packageName: String, appName: String, dailyLimitMinutes: Int) {
+    fun saveAppRule(packageName: String, appName: String, dailyLimitMinutes: Int, isDistractingApp: Boolean) {
         viewModelScope.launch {
             val existingRule = app.appRuleRepository.getRuleForPackage(packageName)
             val newRule = (existingRule ?: AppRule(packageName = packageName, appName = appName)).copy(
                 dailyLimitMinutes = dailyLimitMinutes,
+                isDistractingApp = isDistractingApp,
                 appName = appName
             )
             app.appRuleRepository.saveRule(newRule)

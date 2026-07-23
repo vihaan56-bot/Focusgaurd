@@ -118,10 +118,11 @@ fun AppLimitsScreen(viewModel: AppsViewModel) {
         val currentRule = uiState.rulesMap[appItem.packageName]
         val initialMins = currentRule?.dailyLimitMinutes ?: 30
         var limitInput by remember { mutableStateOf(if (initialMins > 0) initialMins.toString() else "30") }
+        var isDistracting by remember { mutableStateOf(currentRule?.isDistractingApp ?: true) }
 
         AlertDialog(
             onDismissRequest = { selectedAppForLimit = null },
-            title = { Text("Configure Daily Limit for ${appItem.appName}") },
+            title = { Text("Configure Rule for ${appItem.appName}") },
             text = {
                 Column {
                     Text("Enter maximum allowed daily usage in minutes:")
@@ -133,13 +134,25 @@ fun AppLimitsScreen(viewModel: AppsViewModel) {
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
                     )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Checkbox(
+                            checked = isDistracting,
+                            onCheckedChange = { isDistracting = it }
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Block during Focus Mode")
+                    }
                 }
             },
             confirmButton = {
                 Button(
                     onClick = {
                         val mins = limitInput.toIntOrNull() ?: 0
-                        viewModel.saveAppRule(appItem.packageName, appItem.appName, mins)
+                        viewModel.saveAppRule(appItem.packageName, appItem.appName, mins, isDistracting)
                         selectedAppForLimit = null
                     }
                 ) {
