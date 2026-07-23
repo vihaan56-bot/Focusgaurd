@@ -23,7 +23,7 @@ class GetInstalledAppsUseCase(private val context: Context) {
             val packageName = resolveInfo.activityInfo.packageName
             
             // Exclude system UI/settings/dialer and FocusGuard itself from target limit list
-            if (ProtectedApps.isProtectedPackage(packageName)) continue
+            if (ProtectedApps.isProtectedPackage(context, packageName)) continue
 
             val appName = resolveInfo.loadLabel(packageManager).toString()
             val icon = resolveInfo.loadIcon(packageManager)

@@ -46,7 +46,7 @@ class UsageTrackingManager(private val context: Context) {
 
         val result = mutableListOf<AppUsageInfo>()
         for ((pkgName, foregroundMs) in aggregatedUsage) {
-            if (ProtectedApps.isProtectedPackage(pkgName)) continue
+            if (ProtectedApps.isProtectedPackage(context, pkgName)) continue
 
             val appLabel = try {
                 val appInfo = packageManager.getApplicationInfo(pkgName, 0)

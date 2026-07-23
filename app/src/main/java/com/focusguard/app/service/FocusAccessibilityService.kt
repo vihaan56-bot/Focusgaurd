@@ -33,7 +33,7 @@ class FocusAccessibilityService : AccessibilityService() {
         val packageName = event.packageName?.toString() ?: return
 
         // Strict fail-safe: Never inspect protected applications
-        if (ProtectedApps.isProtectedPackage(packageName)) return
+        if (ProtectedApps.isProtectedPackage(this, packageName)) return
 
         val rootNode = rootInActiveWindow
 
